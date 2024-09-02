@@ -651,3 +651,8 @@ class UniswapPool(Account):
 
         # Return tick within the boundaries
         return nextTick, True
+
+
+    ### not part of the uniswap contract but helps us mock internal UniswapV3 functions
+    def get_current_tick(self) -> int:
+        return self.slot0.tick
