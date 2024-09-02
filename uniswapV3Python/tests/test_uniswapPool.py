@@ -51,13 +51,13 @@ def createPool(TEST_POOLS, feeAmount, tickSpacing, ledger):
 @pytest.fixture
 def createPoolMedium(TEST_POOLS, ledger):
     return createPool(
-        TEST_POOLS, FeeAmount.MEDIUM, TICK_SPACINGS[FeeAmount.MEDIUM], ledger
+        TEST_POOLS, FeeAmount.BPS30, TICK_SPACINGS[FeeAmount.BPS30], ledger
     )
 
 
 @pytest.fixture
 def createPoolLow(TEST_POOLS, ledger):
-    return createPool(TEST_POOLS, FeeAmount.LOW, TICK_SPACINGS[FeeAmount.LOW], ledger)
+    return createPool(TEST_POOLS, FeeAmount.BPS5, TICK_SPACINGS[FeeAmount.BPS5], ledger)
 
 
 @pytest.fixture
@@ -80,8 +80,8 @@ def test_constructor(createPoolMedium):
     pool, _, _, _, _ = createPoolMedium
     assert pool.token0 == TEST_TOKENS[0]
     assert pool.token1 == TEST_TOKENS[1]
-    assert pool.fee == FeeAmount.MEDIUM
-    assert pool.tickSpacing == TICK_SPACINGS[FeeAmount.MEDIUM]
+    assert pool.fee == FeeAmount.BPS30
+    assert pool.tickSpacing == TICK_SPACINGS[FeeAmount.BPS30]
 
 
 # Initialize
@@ -1321,7 +1321,7 @@ def test_feesCollected_combination1(initializedLowPoolCollectFees, accounts):
 
 @pytest.fixture
 def createPoolMedium12TickSpacing(TEST_POOLS, ledger):
-    return createPool(TEST_POOLS, FeeAmount.MEDIUM, 12, ledger)
+    return createPool(TEST_POOLS, FeeAmount.BPS30, 12, ledger)
 
 
 @pytest.fixture
@@ -1390,7 +1390,7 @@ def test_noTickTransitionTwice(TEST_POOLS, accounts, ledger):
     print(
         "tick transition cannot run twice if zero for one swap ends at fractional price just below tick"
     )
-    pool, _, _, _, _ = createPool(TEST_POOLS, FeeAmount.MEDIUM, 1, ledger)
+    pool, _, _, _, _ = createPool(TEST_POOLS, FeeAmount.BPS30, 1, ledger)
 
     p0 = TickMath.getSqrtRatioAtTick(-24081) + 1
     ## initialize at a price of ~0.3 token1/token0
@@ -1409,7 +1409,7 @@ def test_noTickTransitionTwice(TEST_POOLS, accounts, ledger):
 
     ## check the math works out to moving the price down 1, sending no amount out, and having some amount remaining
     (sqrtQ, amountIn, amountOut, feeAmount) = SwapMath.computeSwapStep(
-        p0, p0 - 1, liquidity, 3, FeeAmount.MEDIUM
+        p0, p0 - 1, liquidity, 3, FeeAmount.BPS30
     )
     assert sqrtQ == p0 - 1, "price moves"
     assert feeAmount == 1, "fee amount is 1"

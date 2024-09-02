@@ -22,13 +22,13 @@ class Position:
 def pool0():
     return PoolTestCase(
         description="low fee, 1:1 price, 2e18 max range liquidity",
-        feeAmount=FeeAmount.LOW,
-        tickSpacing=TICK_SPACINGS[FeeAmount.LOW],
+        feeAmount=FeeAmount.BPS5,
+        tickSpacing=TICK_SPACINGS[FeeAmount.BPS5],
         startingPrice=encodePriceSqrt(1, 1),
         positions=[
             Position(
-                tickLower=getMinTick(TICK_SPACINGS[FeeAmount.LOW]),
-                tickUpper=getMaxTick(TICK_SPACINGS[FeeAmount.LOW]),
+                tickLower=getMinTick(TICK_SPACINGS[FeeAmount.BPS5]),
+                tickUpper=getMaxTick(TICK_SPACINGS[FeeAmount.BPS5]),
                 liquidity=expandTo18Decimals(2),
             ),
         ],
@@ -40,13 +40,13 @@ def pool0():
 def pool1():
     return PoolTestCase(
         description="medium fee, 1:1 price, 2e18 max range liquidity",
-        feeAmount=FeeAmount.MEDIUM,
-        tickSpacing=TICK_SPACINGS[FeeAmount.MEDIUM],
+        feeAmount=FeeAmount.BPS30,
+        tickSpacing=TICK_SPACINGS[FeeAmount.BPS30],
         startingPrice=encodePriceSqrt(1, 1),
         positions=[
             Position(
-                tickLower=getMinTick(TICK_SPACINGS[FeeAmount.MEDIUM]),
-                tickUpper=getMaxTick(TICK_SPACINGS[FeeAmount.MEDIUM]),
+                tickLower=getMinTick(TICK_SPACINGS[FeeAmount.BPS30]),
+                tickUpper=getMaxTick(TICK_SPACINGS[FeeAmount.BPS30]),
                 liquidity=expandTo18Decimals(2),
             ),
         ],
@@ -58,13 +58,13 @@ def pool1():
 def pool2():
     return PoolTestCase(
         description="high fee, 1:1 price, 2e18 max range liquidity",
-        feeAmount=FeeAmount.HIGH,
-        tickSpacing=TICK_SPACINGS[FeeAmount.HIGH],
+        feeAmount=FeeAmount.BPS100,
+        tickSpacing=TICK_SPACINGS[FeeAmount.BPS100],
         startingPrice=encodePriceSqrt(1, 1),
         positions=[
             Position(
-                tickLower=getMinTick(TICK_SPACINGS[FeeAmount.HIGH]),
-                tickUpper=getMaxTick(TICK_SPACINGS[FeeAmount.HIGH]),
+                tickLower=getMinTick(TICK_SPACINGS[FeeAmount.BPS100]),
+                tickUpper=getMaxTick(TICK_SPACINGS[FeeAmount.BPS100]),
                 liquidity=expandTo18Decimals(2),
             ),
         ],
@@ -76,13 +76,13 @@ def pool2():
 def pool3():
     return PoolTestCase(
         description="medium fee, 10:1 price, 2e18 max range liquidity",
-        feeAmount=FeeAmount.MEDIUM,
-        tickSpacing=TICK_SPACINGS[FeeAmount.MEDIUM],
+        feeAmount=FeeAmount.BPS30,
+        tickSpacing=TICK_SPACINGS[FeeAmount.BPS30],
         startingPrice=encodePriceSqrt(10, 1),
         positions=[
             Position(
-                tickLower=getMinTick(TICK_SPACINGS[FeeAmount.MEDIUM]),
-                tickUpper=getMaxTick(TICK_SPACINGS[FeeAmount.MEDIUM]),
+                tickLower=getMinTick(TICK_SPACINGS[FeeAmount.BPS30]),
+                tickUpper=getMaxTick(TICK_SPACINGS[FeeAmount.BPS30]),
                 liquidity=expandTo18Decimals(2),
             ),
         ],
@@ -94,13 +94,13 @@ def pool3():
 def pool4():
     return PoolTestCase(
         description="medium fee, 1:10 price, 2e18 max range liquidity",
-        feeAmount=FeeAmount.MEDIUM,
-        tickSpacing=TICK_SPACINGS[FeeAmount.MEDIUM],
+        feeAmount=FeeAmount.BPS30,
+        tickSpacing=TICK_SPACINGS[FeeAmount.BPS30],
         startingPrice=encodePriceSqrt(1, 10),
         positions=[
             Position(
-                tickLower=getMinTick(TICK_SPACINGS[FeeAmount.MEDIUM]),
-                tickUpper=getMaxTick(TICK_SPACINGS[FeeAmount.MEDIUM]),
+                tickLower=getMinTick(TICK_SPACINGS[FeeAmount.BPS30]),
+                tickUpper=getMaxTick(TICK_SPACINGS[FeeAmount.BPS30]),
                 liquidity=expandTo18Decimals(2),
             ),
         ],
@@ -112,18 +112,18 @@ def pool4():
 def pool5():
     return PoolTestCase(
         description="medium fee, 1:1 price, 0 liquidity, all liquidity around current price",
-        feeAmount=FeeAmount.MEDIUM,
-        tickSpacing=TICK_SPACINGS[FeeAmount.MEDIUM],
+        feeAmount=FeeAmount.BPS30,
+        tickSpacing=TICK_SPACINGS[FeeAmount.BPS30],
         startingPrice=encodePriceSqrt(1, 1),
         positions=[
             Position(
-                tickLower=getMinTick(TICK_SPACINGS[FeeAmount.MEDIUM]),
-                tickUpper=-TICK_SPACINGS[FeeAmount.MEDIUM],
+                tickLower=getMinTick(TICK_SPACINGS[FeeAmount.BPS30]),
+                tickUpper=-TICK_SPACINGS[FeeAmount.BPS30],
                 liquidity=expandTo18Decimals(2),
             ),
             Position(
-                tickLower=TICK_SPACINGS[FeeAmount.MEDIUM],
-                tickUpper=getMaxTick(TICK_SPACINGS[FeeAmount.MEDIUM]),
+                tickLower=TICK_SPACINGS[FeeAmount.BPS30],
+                tickUpper=getMaxTick(TICK_SPACINGS[FeeAmount.BPS30]),
                 liquidity=expandTo18Decimals(2),
             ),
         ],
@@ -135,23 +135,23 @@ def pool5():
 def pool6():
     return PoolTestCase(
         description="medium fee, 1:1 price, additional liquidity around current price",
-        feeAmount=FeeAmount.MEDIUM,
-        tickSpacing=TICK_SPACINGS[FeeAmount.MEDIUM],
+        feeAmount=FeeAmount.BPS30,
+        tickSpacing=TICK_SPACINGS[FeeAmount.BPS30],
         startingPrice=encodePriceSqrt(1, 1),
         positions=[
             Position(
-                tickLower=getMinTick(TICK_SPACINGS[FeeAmount.MEDIUM]),
-                tickUpper=getMaxTick(TICK_SPACINGS[FeeAmount.MEDIUM]),
+                tickLower=getMinTick(TICK_SPACINGS[FeeAmount.BPS30]),
+                tickUpper=getMaxTick(TICK_SPACINGS[FeeAmount.BPS30]),
                 liquidity=expandTo18Decimals(2),
             ),
             Position(
-                tickLower=getMinTick(TICK_SPACINGS[FeeAmount.MEDIUM]),
-                tickUpper=-TICK_SPACINGS[FeeAmount.MEDIUM],
+                tickLower=getMinTick(TICK_SPACINGS[FeeAmount.BPS30]),
+                tickUpper=-TICK_SPACINGS[FeeAmount.BPS30],
                 liquidity=expandTo18Decimals(2),
             ),
             Position(
-                tickLower=TICK_SPACINGS[FeeAmount.MEDIUM],
-                tickUpper=getMaxTick(TICK_SPACINGS[FeeAmount.MEDIUM]),
+                tickLower=TICK_SPACINGS[FeeAmount.BPS30],
+                tickUpper=getMaxTick(TICK_SPACINGS[FeeAmount.BPS30]),
                 liquidity=expandTo18Decimals(2),
             ),
         ],
@@ -163,13 +163,13 @@ def pool6():
 def pool7():
     return PoolTestCase(
         description="low fee, large liquidity around current price (stable swap)",
-        feeAmount=FeeAmount.LOW,
-        tickSpacing=TICK_SPACINGS[FeeAmount.LOW],
+        feeAmount=FeeAmount.BPS5,
+        tickSpacing=TICK_SPACINGS[FeeAmount.BPS5],
         startingPrice=encodePriceSqrt(1, 1),
         positions=[
             Position(
-                tickLower=-TICK_SPACINGS[FeeAmount.LOW],
-                tickUpper=TICK_SPACINGS[FeeAmount.LOW],
+                tickLower=-TICK_SPACINGS[FeeAmount.BPS5],
+                tickUpper=TICK_SPACINGS[FeeAmount.BPS5],
                 liquidity=expandTo18Decimals(2),
             )
         ],
@@ -181,13 +181,13 @@ def pool7():
 def pool8():
     return PoolTestCase(
         description="medium fee, token0 liquidity only",
-        feeAmount=FeeAmount.MEDIUM,
-        tickSpacing=TICK_SPACINGS[FeeAmount.MEDIUM],
+        feeAmount=FeeAmount.BPS30,
+        tickSpacing=TICK_SPACINGS[FeeAmount.BPS30],
         startingPrice=encodePriceSqrt(1, 1),
         positions=[
             Position(
                 tickLower=0,
-                tickUpper=2000 * TICK_SPACINGS[FeeAmount.MEDIUM],
+                tickUpper=2000 * TICK_SPACINGS[FeeAmount.BPS30],
                 liquidity=expandTo18Decimals(2),
             )
         ],
@@ -199,12 +199,12 @@ def pool8():
 def pool9():
     return PoolTestCase(
         description="medium fee, token1 liquidity only",
-        feeAmount=FeeAmount.MEDIUM,
-        tickSpacing=TICK_SPACINGS[FeeAmount.MEDIUM],
+        feeAmount=FeeAmount.BPS30,
+        tickSpacing=TICK_SPACINGS[FeeAmount.BPS30],
         startingPrice=encodePriceSqrt(1, 1),
         positions=[
             Position(
-                tickLower=-2000 * TICK_SPACINGS[FeeAmount.MEDIUM],
+                tickLower=-2000 * TICK_SPACINGS[FeeAmount.BPS30],
                 tickUpper=0,
                 liquidity=expandTo18Decimals(2),
             )
@@ -217,13 +217,13 @@ def pool9():
 def pool10():
     return PoolTestCase(
         description="close to max price",
-        feeAmount=FeeAmount.MEDIUM,
-        tickSpacing=TICK_SPACINGS[FeeAmount.MEDIUM],
+        feeAmount=FeeAmount.BPS30,
+        tickSpacing=TICK_SPACINGS[FeeAmount.BPS30],
         startingPrice=encodePriceSqrt(2**127, 1),
         positions=[
             Position(
-                tickLower=getMinTick(TICK_SPACINGS[FeeAmount.MEDIUM]),
-                tickUpper=getMaxTick(TICK_SPACINGS[FeeAmount.MEDIUM]),
+                tickLower=getMinTick(TICK_SPACINGS[FeeAmount.BPS30]),
+                tickUpper=getMaxTick(TICK_SPACINGS[FeeAmount.BPS30]),
                 liquidity=expandTo18Decimals(2),
             )
         ],
@@ -237,13 +237,13 @@ def pool10():
 def pool11():
     return PoolTestCase(
         description="close to min price",
-        feeAmount=FeeAmount.MEDIUM,
-        tickSpacing=TICK_SPACINGS[FeeAmount.MEDIUM],
+        feeAmount=FeeAmount.BPS30,
+        tickSpacing=TICK_SPACINGS[FeeAmount.BPS30],
         startingPrice=encodePriceSqrt(1, 2**127),
         positions=[
             Position(
-                tickLower=getMinTick(TICK_SPACINGS[FeeAmount.MEDIUM]),
-                tickUpper=getMaxTick(TICK_SPACINGS[FeeAmount.MEDIUM]),
+                tickLower=getMinTick(TICK_SPACINGS[FeeAmount.BPS30]),
+                tickUpper=getMaxTick(TICK_SPACINGS[FeeAmount.BPS30]),
                 liquidity=expandTo18Decimals(2),
             )
         ],
@@ -255,14 +255,14 @@ def pool11():
 def pool12():
     return PoolTestCase(
         description="max full range liquidity at 1:1 price with default fee",
-        feeAmount=FeeAmount.MEDIUM,
-        tickSpacing=TICK_SPACINGS[FeeAmount.MEDIUM],
+        feeAmount=FeeAmount.BPS30,
+        tickSpacing=TICK_SPACINGS[FeeAmount.BPS30],
         startingPrice=encodePriceSqrt(1, 1),
         positions=[
             Position(
-                tickLower=getMinTick(TICK_SPACINGS[FeeAmount.MEDIUM]),
-                tickUpper=getMaxTick(TICK_SPACINGS[FeeAmount.MEDIUM]),
-                liquidity=getMaxLiquidityPerTick(TICK_SPACINGS[FeeAmount.MEDIUM]),
+                tickLower=getMinTick(TICK_SPACINGS[FeeAmount.BPS30]),
+                tickUpper=getMaxTick(TICK_SPACINGS[FeeAmount.BPS30]),
+                liquidity=getMaxLiquidityPerTick(TICK_SPACINGS[FeeAmount.BPS30]),
             )
         ],
         swapTests=None,
@@ -273,13 +273,13 @@ def pool12():
 def pool13():
     return PoolTestCase(
         description="initialized at the max ratio",
-        feeAmount=FeeAmount.MEDIUM,
-        tickSpacing=TICK_SPACINGS[FeeAmount.MEDIUM],
+        feeAmount=FeeAmount.BPS30,
+        tickSpacing=TICK_SPACINGS[FeeAmount.BPS30],
         startingPrice=MAX_SQRT_RATIO - 1,
         positions=[
             Position(
-                tickLower=getMinTick(TICK_SPACINGS[FeeAmount.MEDIUM]),
-                tickUpper=getMaxTick(TICK_SPACINGS[FeeAmount.MEDIUM]),
+                tickLower=getMinTick(TICK_SPACINGS[FeeAmount.BPS30]),
+                tickUpper=getMaxTick(TICK_SPACINGS[FeeAmount.BPS30]),
                 liquidity=expandTo18Decimals(2),
             )
         ],
@@ -291,13 +291,13 @@ def pool13():
 def pool14():
     return PoolTestCase(
         description="initialized at the min ratio",
-        feeAmount=FeeAmount.MEDIUM,
-        tickSpacing=TICK_SPACINGS[FeeAmount.MEDIUM],
+        feeAmount=FeeAmount.BPS30,
+        tickSpacing=TICK_SPACINGS[FeeAmount.BPS30],
         startingPrice=MIN_SQRT_RATIO,
         positions=[
             Position(
-                tickLower=getMinTick(TICK_SPACINGS[FeeAmount.MEDIUM]),
-                tickUpper=getMaxTick(TICK_SPACINGS[FeeAmount.MEDIUM]),
+                tickLower=getMinTick(TICK_SPACINGS[FeeAmount.BPS30]),
+                tickUpper=getMaxTick(TICK_SPACINGS[FeeAmount.BPS30]),
                 liquidity=expandTo18Decimals(2),
             )
         ],

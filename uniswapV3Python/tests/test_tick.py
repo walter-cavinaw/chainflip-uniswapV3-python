@@ -9,30 +9,30 @@ from .utilities import *
 def test_returns_lowFee():
     print("returns the correct value for low fee")
     maxLiquidityPerTick = Tick.tickSpacingToMaxLiquidityPerTick(
-        TICK_SPACINGS[FeeAmount.LOW]
+        TICK_SPACINGS[FeeAmount.BPS5]
     )
     assert maxLiquidityPerTick == 1917569901783203986719870431555990  ##0.8 bits
-    assert maxLiquidityPerTick == getMaxLiquidityPerTick(TICK_SPACINGS[FeeAmount.LOW])
+    assert maxLiquidityPerTick == getMaxLiquidityPerTick(TICK_SPACINGS[FeeAmount.BPS5])
 
 
 def test_returns_mediumFee():
     print("returns the correct value for medium fee")
     maxLiquidityPerTick = Tick.tickSpacingToMaxLiquidityPerTick(
-        TICK_SPACINGS[FeeAmount.MEDIUM]
+        TICK_SPACINGS[FeeAmount.BPS30]
     )
     assert maxLiquidityPerTick == 11505743598341114571880798222544994  ## 113.1 bits
     assert maxLiquidityPerTick == getMaxLiquidityPerTick(
-        TICK_SPACINGS[FeeAmount.MEDIUM]
+        TICK_SPACINGS[FeeAmount.BPS30]
     )
 
 
 def test_returns_highFee():
     print("returns the correct value for high fee")
     maxLiquidityPerTick = Tick.tickSpacingToMaxLiquidityPerTick(
-        TICK_SPACINGS[FeeAmount.HIGH]
+        TICK_SPACINGS[FeeAmount.BPS100]
     )
     assert maxLiquidityPerTick == 38350317471085141830651933667504588  ## 114.7 bits
-    assert maxLiquidityPerTick == getMaxLiquidityPerTick(TICK_SPACINGS[FeeAmount.HIGH])
+    assert maxLiquidityPerTick == getMaxLiquidityPerTick(TICK_SPACINGS[FeeAmount.BPS100])
 
 
 def tests_returns_allRange():

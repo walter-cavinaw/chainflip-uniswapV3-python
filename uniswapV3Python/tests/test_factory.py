@@ -12,12 +12,12 @@ TEST_ADDRESSES = [
 def test_initial_fees():
     print("initial enabled fee amounts")
     factory = Factory()
-    assert factory.feeAmountTickSpacing[FeeAmount.LOW] == TICK_SPACINGS[FeeAmount.LOW]
+    assert factory.feeAmountTickSpacing[FeeAmount.BPS5] == TICK_SPACINGS[FeeAmount.BPS5]
     assert (
-        factory.feeAmountTickSpacing[FeeAmount.MEDIUM]
-        == TICK_SPACINGS[FeeAmount.MEDIUM]
+        factory.feeAmountTickSpacing[FeeAmount.BPS30]
+        == TICK_SPACINGS[FeeAmount.BPS30]
     )
-    assert factory.feeAmountTickSpacing[FeeAmount.HIGH] == TICK_SPACINGS[FeeAmount.HIGH]
+    assert factory.feeAmountTickSpacing[FeeAmount.BPS100] == TICK_SPACINGS[FeeAmount.BPS100]
 
 
 def createAndCheck_pool(factory, tokens, feeAmount, tickSpacing, ledger):
@@ -52,7 +52,7 @@ def createAndCheck_pool(factory, tokens, feeAmount, tickSpacing, ledger):
 def test_lowFeePool(ledger):
     print("succeds for low fee pool")
     createAndCheck_pool(
-        Factory(), TEST_ADDRESSES, FeeAmount.LOW, TICK_SPACINGS[FeeAmount.LOW], ledger
+        Factory(), TEST_ADDRESSES, FeeAmount.BPS5, TICK_SPACINGS[FeeAmount.BPS5], ledger
     )
 
 
@@ -61,8 +61,8 @@ def test_mediumFeePool(ledger):
     createAndCheck_pool(
         Factory(),
         TEST_ADDRESSES,
-        FeeAmount.MEDIUM,
-        TICK_SPACINGS[FeeAmount.MEDIUM],
+        FeeAmount.BPS30,
+        TICK_SPACINGS[FeeAmount.BPS30],
         ledger,
     )
 
@@ -70,7 +70,7 @@ def test_mediumFeePool(ledger):
 def test_highFeePool(ledger):
     print("succeds for high fee pool")
     createAndCheck_pool(
-        Factory(), TEST_ADDRESSES, FeeAmount.HIGH, TICK_SPACINGS[FeeAmount.HIGH], ledger
+        Factory(), TEST_ADDRESSES, FeeAmount.BPS100, TICK_SPACINGS[FeeAmount.BPS100], ledger
     )
 
 
@@ -79,8 +79,8 @@ def test_tokensReverse(ledger):
     createAndCheck_pool(
         Factory(),
         TEST_ADDRESSES[::-1],
-        FeeAmount.MEDIUM,
-        TICK_SPACINGS[FeeAmount.MEDIUM],
+        FeeAmount.BPS30,
+        TICK_SPACINGS[FeeAmount.BPS30],
         ledger,
     )
 
@@ -88,12 +88,12 @@ def test_tokensReverse(ledger):
 def test_fails_tokenAequalB(ledger):
     print("fails if token a is 0 or token b is 0")
     tryExceptHandler(
-        Factory().createPool, "", TEST_ADDRESSES[0], "0", FeeAmount.LOW, ledger
+        Factory().createPool, "", TEST_ADDRESSES[0], "0", FeeAmount.BPS5, ledger
     )
     tryExceptHandler(
-        Factory().createPool, "", "0", TEST_ADDRESSES[0], FeeAmount.LOW, ledger
+        Factory().createPool, "", "0", TEST_ADDRESSES[0], FeeAmount.BPS5, ledger
     )
-    tryExceptHandler(Factory().createPool, "", "0", "0", FeeAmount.LOW, ledger)
+    tryExceptHandler(Factory().createPool, "", "0", "0", FeeAmount.BPS5, ledger)
 
 
 def test_fails_feeAmountNotEnabled(ledger):
