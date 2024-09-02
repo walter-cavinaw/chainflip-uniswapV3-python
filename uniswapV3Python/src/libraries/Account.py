@@ -17,7 +17,8 @@ class Account:
 
         self.name = name
 
-        self.address = secrets.token_hex(40)
+        # self.address = secrets.token_hex(40)
+        self.address = name
 
         self.tokens = tokens
         self.balances = {}
