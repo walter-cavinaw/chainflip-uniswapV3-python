@@ -20,22 +20,6 @@ def getMaxLiquidityPerTick(tickSpacing):
     return (2**128 - 1) // denominator
 
 
-@dataclass
-class FeeAmount:
-    BPS1: int = 100
-    BPS5: int = 500
-    BPS30: int = 3000
-    BPS100: int = 10000
-
-
-TICK_SPACINGS = {
-    FeeAmount.BPS1: 1,
-    FeeAmount.BPS5: 10,
-    FeeAmount.BPS30: 60,
-    FeeAmount.BPS100: 200,
-}
-
-
 def encodePriceSqrt(reserve1, reserve0):
     # Workaround to get the same numbers as JS
     # This ratio doesn't output the same number as in JS using big number. This causes some
